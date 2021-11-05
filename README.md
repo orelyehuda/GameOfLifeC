@@ -1,1 +1,34 @@
-#CONWAY'S GAME OF LIFE
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+
+
+### Prerequisites
+
+* C99
+* GNU
+* LINUX
+
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/orelyehuda/GameOfLifeC.git
+   ```
+   
+
+<!-- USAGE-->
+## Usage
+ ```sh
+   gcc gol.c
+```
+   ```sh
+   ./a.out
+   ```
+
+
+##DEMO
+
+![](sample.gif)
