@@ -106,7 +106,7 @@ int main(int argv, char *argc[]) {
 		pp(grid, width, height);
 		gen(grid, new, width, height);
 		iidup(new, grid, width, height);
-		usleep(90000);
+		usleep(200000);
 	}
 	return 0;
 }
