@@ -32,4 +32,4 @@
 ##DEMO
 
 1.
-![](sample.gif)
+![](sample1.gif)
