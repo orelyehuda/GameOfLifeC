@@ -14,9 +14,9 @@
 #elif defined(__linux__)
 	#define PLATFORM_NAME "linux" // linux 
 	#include <unistd.h>
-#elif defined(__unix__)
-	#define PLATFORM_NAME "linux" // linux 
-	#include <unistd.h>
+    #include <sys/ioctl.h>
+
+
 #else 
 	#define PLATFORM_NAME NULL
 #endif
@@ -81,9 +81,21 @@ void iidup(int *grid[], int *new[], const int width, const int height)
 	}
 }
 		
-int main(int argv, char *argc[]) {
-	int width = 50;
-	int height = 100;
+int main(int argv, char *argc[])
+{
+    int width, height;
+
+    #if defined(__linux__)
+        struct winsize sz;
+        ioctl(0, TIOCGWINSZ, &sz);
+        width = sz.ws_row;
+        height = sz.ws_col;
+    #else
+        width = 300;
+        height = 200;
+    #endif
+
+
 	int row, column;
 	int **grid, **new;
 
@@ -106,7 +118,7 @@ int main(int argv, char *argc[]) {
 
 	printf("%c[2J%c[;H",(char) 27, (char) 27); // clear screen
 
-	while(1)
+	while(1) //infinite loop for now keyboard int to exit
 	{
 		printf("%c[2J%c[;H",(char) 27, (char) 27);
 
