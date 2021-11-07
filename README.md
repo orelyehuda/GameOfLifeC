@@ -8,8 +8,6 @@
 
 * C99
 * GNU
-* LINUX 
-     ```sh #include <unistd.h>```
 
 
 ### Installation
