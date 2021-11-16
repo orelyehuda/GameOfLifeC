@@ -71,7 +71,9 @@ void iidup(int *grid[], int *new[], const int width, const int height) {
     }
 }
 
+
 int main(int argv, char *argc[]) {
+	int coolPattern = 1; 
     int width, height;
 
 #if defined(__linux__)
@@ -98,12 +100,27 @@ int main(int argv, char *argc[]) {
         new[row] = malloc(height * sizeof(int));
 
         for (column = 0; column < height - 1; column++) {
-            grid[row][column] = (rand() % 10 == 1) ? 1 : 0; // just the prob of alive cell on spawn
+            if(coolPattern) grid[row][column] =  0; // just the prob of alive cell on spawn
+            else grid[row][column] = (rand() % 10 == 1) ? 1 : 0; // just the prob of alive cell on spawn
 
         }
     }
 
-    printf("%c[2J%c[;H", (char) 27, (char) 27); // clear screen
+	if(coolPattern){
+		grid[(int)width/2][(int)height/2]= 1;
+		grid[(int)width/2 - 1][(int)height/2]= 1;
+		grid[width/2 - 2][height/2 + 1] = 1;
+		grid[width/2][height/2 + 1] = 1;
+		grid[width/2][height/2 + 2] = 1;
+		grid[width/2][height/2 - 1] = 1;
+		grid[width/2 - 1][height/2 - 1] = 1;
+		grid[width/2 - 2][height/2 - 2] = 1;
+		grid[width/2][height/2 - 2] = 1;
+		grid[width/2][height/2 - 3] = 1;
+
+
+	}
+	    printf("%c[2J%c[;H", (char) 27, (char) 27); // clear screen
 
     while (1) //infinite loop for now keyboard int to exit
     {
@@ -113,8 +130,10 @@ int main(int argv, char *argc[]) {
         gen(grid, new, width, height);
         iidup(new, grid, width, height);
 
-        usleep(180000); // sleep for 180 milsecs
+        usleep(18000); // sleep for 180 milsecs
     }
+	free(grid);
+	free(new);
 
     return 0;
 }
